@@ -1,0 +1,49 @@
+<form class="hidden sm:flex flex-1 justify-end">   
+    <label class=" flex w-full lg:w-1/2 h-auto py-2 px-4 items-center text-white bg-white/10 rounded-full">
+        <input type="text" id="typed" class="w-full h-full bg-transparent border-none outline-none">
+        <img src="search.svg" class="w-4 h-4" alt="">
+    </label>
+</form>
+
+<script type="module">
+    var phrases = ['Bad Bunny', 'Michael Jackson', 'BTS']; // Las frases que quieres mostrar
+    var delay = 1000; // La velocidad de la animación en milisegundos
+    var currentPhraseIndex = 0; // Índice de la frase actual
+
+function typePhrase() {
+    var phrase = phrases[currentPhraseIndex];
+    var inputElement = document.getElementById('typed');
+    var charCount = 0;
+
+    var typingInterval = setInterval(function() {
+    if (charCount > phrase.length) {
+        clearInterval(typingInterval);
+        setTimeout(deletePhrase, delay);
+    } else {
+        inputElement.placeholder += phrase.charAt(charCount);
+        charCount++;
+    }
+    }, 100); // Escribe cada carácter cada 100 ms
+}
+
+function deletePhrase() {
+    var inputElement = document.getElementById('typed');
+    var charCount = inputElement.placeholder.length;
+
+    var deletingInterval = setInterval(function() {
+    if (charCount <= 0) {
+        clearInterval(deletingInterval);
+        currentPhraseIndex++;
+        if (currentPhraseIndex >= phrases.length) {
+        currentPhraseIndex = 0;
+        }
+        setTimeout(typePhrase, delay);
+    } else {
+        inputElement.placeholder = inputElement.placeholder.slice(0, -1);
+        charCount--;
+    }
+    }, 100); // Borra cada carácter cada 100 ms
+}
+
+typePhrase();
+</script>

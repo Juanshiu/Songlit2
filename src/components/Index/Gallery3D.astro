@@ -1,0 +1,123 @@
+<div class="container">
+    <div class="images">
+        <img src="https://t2.genius.com/unsafe/300x300/https%3A%2F%2Fimages.genius.com%2F0c93db95b0db6cc1a030501845da4291.1000x1000x1.jpg" alt="">
+        <img src="https://t2.genius.com/unsafe/300x0/https%3A%2F%2Fimages.genius.com%2Fb02673667559d1eff81edf42798365df.1000x1000x1.jpg" alt="">
+        <img src="https://t2.genius.com/unsafe/300x0/https%3A%2F%2Fimages.genius.com%2F39186f6d0d8a556239cc845ba96882bd.1000x1000x1.jpg" alt="">
+        <img src="https://t2.genius.com/unsafe/340x340/https%3A%2F%2Fimages.genius.com%2Fa7c0bb49114dc476947df4375fb2ca0b.1000x1000x1.png" alt="">
+        <img src="https://t2.genius.com/unsafe/300x0/https%3A%2F%2Fimages.genius.com%2Ffe6fe68ebeeed30dbe5fd776454a4b79.1000x1000x1.png" alt="">
+        <img src="https://is1-ssl.mzstatic.com/image/thumb/Video126/v4/b6/d6/c5/b6d6c536-d20e-b45d-a0f9-30d90f1d5024/Job9d50239a-1c49-4790-aa11-6551eca6955f-161158640-PreviewImage_preview_image_nonvideo_sdr-Time1704821412154.png/316x316bb.webp" alt="">
+    </div>
+</div>
+
+<style>
+    img {
+        position: absolute;
+        width: 160px;
+        height: 160px;
+    }
+    .container {
+        bottom: 16rem;
+        right: 5rem;
+        transform: rotateX(-15deg) rotatez(-20deg);
+        width: 150px;
+        height: 150px;
+        position: relative;
+        perspective: 1000px;
+        transform-style: preserve-3d;
+    }
+    .images {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        transform-style: preserve-3d;
+        animation: rotate 20s infinite linear;
+    }
+
+    @keyframes rotate {
+        to {
+            transform: rotateY(360deg);
+        }
+    }
+    
+    img:nth-child(1) {
+        transform: rotateY(60deg) translateZ(200px);
+    }
+    img:nth-child(2) {
+        transform: rotateY(120deg) translateZ(200px);
+    }
+    img:nth-child(3) {
+        transform: rotateY(180deg) translateZ(200px);
+    }
+    img:nth-child(4) {
+        transform: rotateY(240deg) translateZ(200px);
+    }
+    img:nth-child(5) {
+        transform: rotateY(300deg) translateZ(200px);
+    }
+    img:nth-child(6) {
+        transform: rotateY(360deg) translateZ(200px);
+    }
+
+    @media screen and (max-width: 426px) {
+        img {
+        width: 100px;
+        height: 110px;
+    }
+
+    img:nth-child(1) {
+        transform: rotateY(60deg) translateZ(150px);
+    }
+    img:nth-child(2) {
+        transform: rotateY(120deg) translateZ(150px);
+    }
+    img:nth-child(3) {
+        transform: rotateY(180deg) translateZ(150px);
+    }
+    img:nth-child(4) {
+        transform: rotateY(240deg) translateZ(150px);
+    }
+    img:nth-child(5) {
+        transform: rotateY(300deg) translateZ(150px);
+    }
+    img:nth-child(6) {
+        transform: rotateY(360deg) translateZ(150px);
+    }
+    img:nth-child(7) {
+        transform: rotateY(420deg) translateZ(150px);
+    }
+
+        .container {
+        bottom: 12rem;
+        right: 0rem;
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+        .container {
+        bottom: 16rem;
+        right: 6rem;
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        img {
+            width: 120px;
+            height: 130px;
+        }
+        .container {
+            bottom: 13rem;
+            right: 4rem;
+        }
+    }
+
+    @media screen and (min-width: 1440px) {
+        img {
+            width: 140px;
+            height: 150px;
+        }
+        .container {
+            bottom: 14rem;
+            right: 10rem;
+        }
+    }
+</style>

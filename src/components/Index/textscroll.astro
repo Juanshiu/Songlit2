@@ -1,0 +1,87 @@
+<div class="logos mt-24">
+    <div class="slider py-2">
+        <div class="slide-track">
+            <div class="slide flex gap-1">
+                <img src="stars.svg" alt=""><p>NOTICIAS</p>
+            </div>
+            <div class="slide flex gap-1">
+                <img src="stars.svg" alt=""><p>TENDENCIAS</p>
+            </div>
+            <div class="slide flex gap-1">
+                <img src="stars.svg" alt=""><p>INFORMACIÓN</p>
+            </div>
+            <div class="slide flex gap-1">
+                <img src="stars.svg" alt=""><p>CURIOSIDADES</p>
+            </div>
+            <div class="slide flex gap-1">
+                <img src="stars.svg" alt=""><p>Y MÁS...</p>
+            </div>
+            <div class="slide flex gap-1">
+                <img src="stars.svg" alt=""><p>NOTICIAS</p>
+            </div>
+            <div class="slide flex gap-1">
+                <img src="stars.svg" alt=""><p>TENDENCIAS</p>
+            </div>
+            <div class="slide flex gap-1">
+                <img src="stars.svg" alt=""><p>INFORMACIÓN</p>
+            </div>
+            <div class="slide flex gap-1">
+                <img src="stars.svg" alt=""><p>CURIOSIDADES</p>
+            </div>
+            <div class="slide flex gap-1">
+                <img src="stars.svg"><p>Y MÁS...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.slider {
+    color: #fff;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    height: auto;
+    margin: auto;
+    overflow: hidden;
+    -webkit-mask: linear-gradient(
+    90deg,
+    transparent,
+    white 20%,
+    white 80%,
+    transparent
+  );
+  mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+}
+
+.slider .slide-track {
+    display: flex;
+    animation: scroll 40s linear infinite;
+    -webkit-animation: scroll 40s linear infinite;
+    width: calc(200px * 10);
+}
+
+.slider .slide {
+    width: 200px;
+}
+
+.slider .slide p {
+    width: 100%;
+    color: white;
+}
+
+.slider .slide svg {
+    pointer-events: none;
+}
+
+@keyframes scroll {
+    0% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+    100% {
+        -webkit-transform: translateX(calc(-200px * 5));
+        transform: translateX(calc(-200px * 5));
+    }
+}
+</style>

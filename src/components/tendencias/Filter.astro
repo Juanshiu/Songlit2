@@ -1,0 +1,94 @@
+<details>
+    <summary>Canciones / Géneros / Día<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;"><path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"></path></svg></summary>
+    <table>
+        <thead>
+            <tr>
+                <th><button>TIPO</button></th>
+                <th><button>GÉNERO</button></th>
+                <th><button>TIEMPO</button></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><button>Canciones</button></td>
+                <td><button>Todo</button></td>
+                <td><button>Día</button></td>
+            </tr>
+            <tr>
+                <td><button>Álbums</button></td>
+                <td><button>Rap</button></td>
+                <td><button>Semana</button></td>
+            </tr>
+            <tr>
+                <td><button>Artistas</button></td>
+                <td><button>Pop</button></td>
+                <td><button>Mes</button></td>
+            </tr>
+            <tr>
+                <td><button>Letras</button></td>
+                <td><button>R&B</button></td>
+                <td><button>Todo el tiempo</button></td>
+            </tr>
+            <tr>
+                <td rowspan="2"></td>
+                <td><button>Rock</button></td>
+                <td rowspan="2"></td>
+            </tr>
+            <tr>
+                <td><button>Country</button></td>
+            </tr>
+        </tbody>
+    </table>
+</details>
+
+<style>
+    details {
+        position: relative;
+        width: 100%;
+    }
+    summary {
+        width: max-content; /* Establece el ancho inicial del elemento summary */
+        transition: gap 0.5s ease-out; /* Anima el cambio de ancho */
+        display:flex; 
+        justify-content: space-between;
+        padding: 0.5rem 0.5rem 0.5rem 1rem ;
+        border: 1px solid #fff;
+        cursor: pointer;
+    }
+
+    details[open] summary {
+        gap: 17px;
+    }
+
+    summary svg {
+        transition: transform 0.3s;
+        transition: 0.3s;
+    }
+
+    details[open] summary svg {
+        transform: rotate(180deg);
+        color: var(--color-primario);
+    }
+    
+    table {
+        width: 100%;
+        position: absolute;
+        border-collapse: collapse;
+    }
+
+    td {
+        background-color: black;
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: black;
+        border: 1px solid #ddd;
+    }
+    button {
+        padding: 8px;
+        width: 100%;
+        text-align: left;
+    }
+    
+</style>

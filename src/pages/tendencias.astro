@@ -1,0 +1,42 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Section from "@components/Section.astro";
+import Filter from "@components/tendencias/Filter.astro";
+import Charts from "@components/tendencias/charts.astro";
+
+---
+
+<Layout title="Songlit | Tendencias" description="Aquí encontrarás las últimas tendencias relacionadas con el mundo de la música.">
+    <main class=" min-h-screen">
+
+        <Section class=" max-w-3xl xl:max-w-5xl mt-8">
+            
+            <article class="bg-stone-700 w-full h-56 lg:h-80 rounded-xl mb-4 relative">
+                <a href="">
+                    <video src="video/tenden.mp4" autoplay loop muted class="absolute top left w-full h-full sm:object-cover object-fill rounded-xl"></video>
+                </a>
+            </article>
+            
+            <article class=" grid  grid-cols-2  gap-4 ">
+                <a href="" class=" w-full h-auto">
+                    <img src="img/BMTH.webp" alt="Notice 2" class=" rounded-xl">
+                </a>
+                <a href="" class=" w-full h-auto">
+                    <img src="img/KaliPeso.webp" alt="Notice 3" class=" rounded-xl">
+                </a>
+            </article>
+
+        </Section>
+
+        <Section class=" text-white mt-20">
+            <div class=" flex justify-between items-center">
+                <h1 class=" text-4xl">Lista</h1>
+                <div>
+                    <Filter />
+                </div>
+            </div>
+            <Charts />
+        </Section>
+
+    </main>
+</Layout>

@@ -1,0 +1,88 @@
+.background {
+  z-index: -10;
+  filter: blur(100px);
+  top: -250px;
+  left: -200px;
+  width: 40%;
+  height: 25%;
+  border-radius: 50%;
+  position: absolute;
+  background: rgb(89, 0, 255);
+}
+
+.background::after {
+  content: '';
+  filter: blur(1px);
+  top: 0;
+  left: 90px;
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  position: absolute;
+  background: rgb(255, 79, 231);
+}
+.background div {
+  filter: blur(1px);
+  top: 350px;
+  left: -100px;
+  width: 45%;
+  height: 70%;
+  border-radius: 50%;
+  position: absolute;
+  background: rgb(0, 254, 241);
+  z-index: -9;
+}
+
+@media screen and (min-width: 768px) {
+  .background {
+  top: -250px;
+  left: -200px;
+  width: 70%;
+  height: 20%;
+}
+}
+
+video {
+  border-radius: 999px;
+}
+
+.animate-charcter {
+  background-image: linear-gradient(
+    -25deg,
+    #fff800 0%,
+    #7c0c9e 29%,
+    #ff1361 67%,
+    #fff800 100%
+  );
+  background-size: 200% auto;
+  color: #fff;
+  text-decoration: transparent;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 5s ease-in infinite;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.boxstroke {
+  width: 10rem;
+  height: 10rem;
+  border: 1px ridge #fff;
+  border-radius: 10px;
+}
+
+.circle {
+  right: 5rem;
+  z-index: -1;
+  border-radius: 50%;
+  position: absolute;
+  width: 40rem;
+  height: 40rem;
+  background-color: #a200ff;
+  opacity: .7;
+  filter: blur(200px);
+}

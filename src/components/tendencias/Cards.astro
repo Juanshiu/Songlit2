@@ -1,0 +1,24 @@
+---
+interface Props {
+    album: string;
+    name: string;
+    view: number;
+    class?: string;
+}
+
+const { name, view, album, class:ClassName } = Astro.props;
+---
+<div class={`${ClassName}`}>
+    <div class=" w-48 h-60 relative rounded text-white border border-white ">
+            <img src={album} alt={name} class=" size-52 absolute bottom-16 left-4 border-b-8 border-l-8 border-black">
+        <div class=" absolute left-6 bottom-4">
+            <div>
+                <span>{name}</span>
+                <p class=" flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M19 4h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm.002 16H5V8h14l.002 12z"></path><path d="m11 17.414 5.707-5.707-1.414-1.414L11 14.586l-2.293-2.293-1.414 1.414z"></path></svg>
+                    {view}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
