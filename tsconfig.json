@@ -1,7 +1,7 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "C:/Users/Juansho/Documents/Proyectos/Songlit2",
     "paths": {
       "@components/*": [
         "src/components/*"
@@ -9,6 +9,8 @@
       "@layouts/*": [
         "src/layouts/*"
       ]
-    }
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   }
 }

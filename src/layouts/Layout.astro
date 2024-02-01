@@ -2,9 +2,10 @@
 interface Props {
 	title: string;
 	description: string;
+	class?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, class: className } = Astro.props;
 import '@fontsource-variable/onest';
 import { ViewTransitions } from 'astro:transitions';
 import Header from "@components/Layout/Header/Header.astro";
@@ -26,7 +27,7 @@ import Footer from "@components/Layout/Footer.astro";
 		<ViewTransitions />
 	</head>
 
-	<body>
+	<body class={`${className}`}>
 		<Header/>
 			<slot />
 		<Footer />

@@ -1,0 +1,62 @@
+---
+import Layout from '@layouts/Layout.astro';
+import fetchApi from '../lib/strapi';
+import type Song from '../interfaces/songs';
+import Section from '@components/Section.astro';
+import FormattedDate from '@components/tendencias/FormattedDate';
+
+export async function getStaticPaths() {
+  const songs = await fetchApi<Song[]>({
+    endpoint: 'songs?populate[genres][fields][1]=genero&populate[card][fields][1]=url',
+    wrappedByKey: 'data'
+  });
+
+  return songs.map((song) => ({
+    params: { slug: song.attributes.slug },
+    props: song
+  }));
+}
+
+type Props = Song;
+const songs = Astro.props;
+const STRAPI_URL = import.meta.env.STRAPI_URL;
+
+let shortAbout = '';
+
+if (songs && songs.attributes && songs.attributes.about) {
+  shortAbout = songs.attributes.about.substring(0, 215);
+
+  if (songs.attributes.about.length > 215) {
+    shortAbout += '...';
+  }
+}
+
+---
+
+<Layout title={`${songs.attributes.artist} - ${songs.attributes.title}`} description='' class=' bg-neutral-950'>
+  <main class=" min-h-screen">
+
+  <section class="backgroundimg w-full h-auto text-white">
+
+    <article class="w-full h-[19.5rem] px-8 pt-4 flex gap-6 mx-auto container">
+      <img src={`${STRAPI_URL}${songs.attributes.card.data.attributes.url}`} alt={songs.attributes.title} class=" size-[19.5rem] ">
+      <div class=" text-left w-[40rem]"> 
+        <span class=" text-pink-400">Track</span>
+        <h1 class="text-5xl text-white font-semibold mb-2">{songs.attributes.title}</h1>
+        <h2 class="text-xl text-white font-medium">{songs.attributes.artist}</h2>
+        <p class=" mt-4 text-pretty text-lg">{shortAbout}</p>
+        <span class=" flex gap-1 items-center"><img src="calendar.svg"> Publicado en <FormattedDate fechaNumerica={songs.attributes.date}/></span>
+      </div>
+    </article>
+
+  </section>
+
+  </main>
+</Layout>
+
+<style>
+  section:first-child{
+    background: linear-gradient(#511a1a, #e83030);
+  }
+  
+</style>
