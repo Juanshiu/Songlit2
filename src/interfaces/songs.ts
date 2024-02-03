@@ -14,7 +14,13 @@ export default interface Song {
         lyrics3: string;
         credits: string;
         slug: string;
-        genres: string[];
+        genres: {
+            data: [
+                {attributes: {
+                    genero: string;
+                }}
+            ]
+        };
         card: {
             data: {
                 attributes: {

@@ -94,6 +94,14 @@ if (songs && songs.attributes && songs.attributes.about) {
         </span>
       </div>
 
+      <span class=" flex gap-2 text-lime-300 text-lg mt-8">
+        <img src="svg/song.svg" class=" fill-black" alt="">
+        Generos
+      </span>
+      <div class=" flex gap-2">
+        {songs.attributes.genres.data.map((genre) => (<span class=" border border-stone-500 px-2 mt-2 rounded-full">{genre.attributes.genero}</span>))}
+      </div>
+
     </article>
   </Section>
 
