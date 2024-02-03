@@ -10,7 +10,7 @@ npm create astro@latest -- --template basics
 
 > 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-![Preview](https://github.com/Juanshiu/Songlit2/public/img/preview.png)
+![Preview](https://github.com/Juanshiu/Songlit2/blob/master/public/img/preview.png)
 
 ## 🚀 Project Structure
 
