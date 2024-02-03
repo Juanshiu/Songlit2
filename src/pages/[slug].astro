@@ -4,10 +4,11 @@ import fetchApi from '../lib/strapi';
 import type Song from '../interfaces/songs';
 import Section from '@components/Section.astro';
 import FormattedDate from '@components/tendencias/FormattedDate';
+import markdownToHtml from 'src/lib/markdownToHtml';
 
 export async function getStaticPaths() {
   const songs = await fetchApi<Song[]>({
-    endpoint: 'songs?populate[genres][fields][1]=genero&populate[card][fields][1]=url',
+    endpoint: 'songs?populate[genres][fields][1]=genero&populate[card][fields][1]=url&populate[artists][fields]=name',
     wrappedByKey: 'data'
   });
 
@@ -15,38 +16,96 @@ export async function getStaticPaths() {
     params: { slug: song.attributes.slug },
     props: song
   }));
+  
 }
 
 type Props = Song;
 const songs = Astro.props;
 const STRAPI_URL = import.meta.env.STRAPI_URL;
 
+const lyrics = await markdownToHtml({ markdown: songs.attributes.lyrics3 });
+
 let shortAbout = '';
-
 if (songs && songs.attributes && songs.attributes.about) {
-  shortAbout = songs.attributes.about.substring(0, 215);
+  shortAbout = songs.attributes.about.substring(0, 275);
 
-  if (songs.attributes.about.length > 215) {
+  if (songs.attributes.about.length > 275) {
     shortAbout += '...';
   }
 }
-
 ---
 
-<Layout title={`${songs.attributes.artist} - ${songs.attributes.title}`} description='' class=' bg-neutral-950'>
+<Layout title={`${songs.attributes.artists.data[0].attributes.name} - ${songs.attributes.title} Lyrics | Songlit`} description='' class=' bg-neutral-900'>
   <main class=" min-h-screen">
 
-  <section class="backgroundimg w-full h-auto text-white">
+  <section class="backgroundimg w-full h-auto text-white pt-16" id="inicio">
 
     <article class="w-full h-[19.5rem] px-8 pt-4 flex gap-6 mx-auto container">
       <img src={`${STRAPI_URL}${songs.attributes.card.data.attributes.url}`} alt={songs.attributes.title} class=" size-[19.5rem] ">
-      <div class=" text-left w-[40rem]"> 
-        <span class=" text-pink-400">Track</span>
-        <h1 class="text-5xl text-white font-semibold mb-2">{songs.attributes.title}</h1>
-        <h2 class="text-xl text-white font-medium">{songs.attributes.artist}</h2>
-        <p class=" mt-4 text-pretty text-lg">{shortAbout}</p>
-        <span class=" flex gap-1 items-center"><img src="calendar.svg"> Publicado en <FormattedDate fechaNumerica={songs.attributes.date}/></span>
+
+      <div class="flex flex-col h-full text-left w-[40rem]"> 
+        <h1 class="text-4xl text-white font-semibold mb-2">{songs.attributes.title}</h1>
+        <h2 class="text-xl text-white font-medium">{songs.attributes.artists.data[0].attributes.name} &#8226; <span class="text-pink-400">Track <a href=""></a></span>
+        </h2>
+        <p class="mt-4 text-pretty text-lg">{shortAbout} <a href="#about" class="underline hover:no-underline">Leer más &#8629;	</a></p>
+        <span class="flex gap-1 items-center mt-auto pb-4"><img src="svg/calendar.svg"> Publicado en <FormattedDate fechaNumerica={songs.attributes.date}/></span>
       </div>
+
+    </article>
+
+  </section>
+
+  <hr class=" w-full mt-16 border-stone-600"> 
+
+  <Section class=" mt-12 flex">
+
+    <article class=" w-2/3 text-white text-xl" >
+      <div class=" flex gap-8 mb-6 font-light text-base">
+          <span class=" flex items-center gap-1">
+            <img src="svg/into.svg" class=" size-4" alt="">
+            {songs.attributes.title} Lyrics
+          </span>
+          <span class=" flex items-center gap-1">
+            <img src="svg/translate.svg" class=" size-4" alt="">
+            Traducir
+          </span>
+      </div>
+      <div set:html={lyrics} class=" space-y-2"></div>
+    </article>
+
+    <article class=" w-1/3 border-l border-stone-600 p-4 text-white">
+      <span class=" flex gap-2 text-pink-300 text-lg">
+        <img src="svg/circlecheck.svg" alt="">
+        Información de la canción
+      </span>
+      
+      <div class="flex flex-col gap-3 text-normal">
+        <span class="flex gap-1 items-center mt-2">
+          <img src="svg/lapiz.svg" class=" size-4" alt="">
+          <span>Escrito por: {songs.attributes.artists.data[0].attributes.name}</span>
+        </span>
+        <span class="flex gap-1 items-center">
+          <img src="svg/slider.svg" class=" size-4" alt="">
+          <span>Producido por: {songs.attributes.artists.data[0].attributes.name}</span>
+        </span>
+        <span class="flex gap-1 items-center">
+          <img src="svg/calendar.svg" class=" size-4" alt="">
+          <span class=" flex gap-2">Publicado en: <FormattedDate fechaNumerica={songs.attributes.date}/></span>
+        </span>
+      </div>
+
+    </article>
+  </Section>
+
+  <section class=" w-full mx-auto mt-12 bg-[#2A1202]" id="about">
+
+    <article class="text-white px-[9.4rem] py-16">
+      <div class=" w-2/3 flex flex-col gap-4">
+        <h1 class=" font-medium text-8xl text-center">About</h1>
+        <span class=" flex justify-between">Anotación de Songlit <span>Contribuciones</span></span>
+        <p class=" space-y-4 text-lg">{songs.attributes.about}</p>
+      </div>
+
     </article>
 
   </section>
@@ -56,7 +115,6 @@ if (songs && songs.attributes && songs.attributes.about) {
 
 <style>
   section:first-child{
-    background: linear-gradient(#511a1a, #e83030);
+    background: linear-gradient(#241818, #700c0c);
   }
-  
 </style>

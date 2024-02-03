@@ -2,10 +2,16 @@ export default interface Song {
     id: number;
     attributes: {
         title: string;
-        artist: string;
+        artists: {
+            data: [
+                {attributes: {
+                    name: string;
+                }}
+            ]
+        };
         date: string;
         about: string;
-        lyrics: string;
+        lyrics3: string;
         credits: string;
         slug: string;
         genres: string[];
@@ -15,6 +21,6 @@ export default interface Song {
                     url: string;
                 }
             }
-        }
-    }
-  }
+        };
+    };
+}

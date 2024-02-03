@@ -3,7 +3,7 @@ import fetchApi from '../../lib/strapi';
 import type Chart from '../../interfaces/charts';
 
 let charts = await fetchApi<Chart[]>({
-  endpoint: 'charts?populate[genres][fields][1]=genero&populate[imgalbum][fields][1]=url',
+  endpoint: 'charts?populate=[genres][fields][1]=genero&populate[imgalbum][fields][1]=url&populate[artist][fields][1]=name',
   wrappedByKey: 'data',
 });
 
@@ -17,7 +17,7 @@ const STRAPI_URL = import.meta.env.STRAPI_URL;
           <span class=" p-4 w-4">{chart.id}</span>
             <img src={`${STRAPI_URL}${chart.attributes.imgalbum.data.attributes.url}`} alt={chart.attributes.title} class=" size-14 ml-8 mr-4">
             <span class=" w-1/2">{chart.attributes.title}</span>
-            <span class=" text-right">{chart.attributes.artist}</span>
+            <span class=" text-right">{chart.attributes.artist.data.attributes.name}</span>
         </a>
         <hr class=" border-stone-500">
     )
